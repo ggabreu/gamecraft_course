@@ -1,5 +1,651 @@
 {
 	"name": "Event sheet 1",
-	"events": [],
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "frutas",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Quantidade de frutas coletadas",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 608995752797177
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Start",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 358159600287033
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "Jogador",
+							"sid": 992205975377703,
+							"parameters": {
+								"x": "JogadorSensor.X",
+								"y": "JogadorSensor.Y"
+							}
+						},
+						{
+							"id": "pin-to-object-properties",
+							"objectClass": "Jogador",
+							"sid": 726459606401177,
+							"behaviorType": "Pin",
+							"parameters": {
+								"pin-to": "JogadorSensor",
+								"x": true,
+								"y": true,
+								"angle": true,
+								"width-type": "no",
+								"height-type": "no",
+								"z": false
+							}
+						}
+					],
+					"sid": 291799973982278
+				}
+			],
+			"sid": 182565348335130
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Animation",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-moved",
+							"objectClass": "JogadorSensor",
+							"sid": 901834201889798,
+							"behaviorType": "Platform"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Jogador",
+							"sid": 387319630802083,
+							"parameters": {
+								"animation": "\"RUN\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 766768018354049
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-stopped",
+							"objectClass": "JogadorSensor",
+							"sid": 723663078688850,
+							"behaviorType": "Platform"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Jogador",
+							"sid": 964840554631179,
+							"parameters": {
+								"animation": "\"IDLE\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 991343399739413
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-jump",
+							"objectClass": "JogadorSensor",
+							"sid": 858240432419073,
+							"behaviorType": "Platform"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Jogador",
+							"sid": 819902138283094,
+							"parameters": {
+								"animation": "\"JUMP\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 137875532867342
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-falling",
+							"objectClass": "JogadorSensor",
+							"sid": 128998873502440,
+							"behaviorType": "Platform"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Jogador",
+							"sid": 614503661680036,
+							"parameters": {
+								"animation": "\"FALL\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 218223632782269
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-landed",
+							"objectClass": "JogadorSensor",
+							"sid": 515133133851044,
+							"behaviorType": "Platform"
+						}
+					],
+					"actions": [],
+					"sid": 779679494361463,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-moving",
+									"objectClass": "JogadorSensor",
+									"sid": 428562519620593,
+									"behaviorType": "Platform"
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "Jogador",
+									"sid": 638126271825013,
+									"parameters": {
+										"animation": "\"RUN\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 825077446728830
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 260460889896435
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "Jogador",
+									"sid": 918993379300709,
+									"parameters": {
+										"animation": "\"IDLE\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 822681448194123
+						}
+					]
+				}
+			],
+			"sid": 996846940368533
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Keyboard",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 920621722151540,
+							"parameters": {
+								"key": 68
+							}
+						},
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 730699132797571,
+							"parameters": {
+								"key": 39
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "JogadorSensor",
+							"sid": 729357960829867,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "right"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "Jogador",
+							"sid": 263278468088347,
+							"parameters": {
+								"state": "not-mirrored"
+							}
+						}
+					],
+					"sid": 372975039741789,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 649219967589166,
+							"parameters": {
+								"key": 65
+							}
+						},
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 494202342686542,
+							"parameters": {
+								"key": 37
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "JogadorSensor",
+							"sid": 322081545680841,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "left"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "Jogador",
+							"sid": 156293733068163,
+							"parameters": {
+								"state": "mirrored"
+							}
+						}
+					],
+					"sid": 492770883314056,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 845994277230654,
+							"parameters": {
+								"key": 87
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "JogadorSensor",
+							"sid": 276151322859068,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "jump"
+							}
+						}
+					],
+					"sid": 104499315669408
+				}
+			],
+			"sid": 375859456845762
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "JogadorSensor",
+					"sid": 501496422953763,
+					"parameters": {
+						"object": "Frutas"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Frutas",
+					"sid": 578027490112363
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 239413268585508,
+					"parameters": {
+						"variable": "frutas",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "txtFrutas",
+					"sid": 316949182318685,
+					"parameters": {
+						"text": "\"Frutas: \" & frutas"
+					}
+				}
+			],
+			"sid": 376561010539464
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Enemy",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 223670223013860,
+							"parameters": {
+								"object": "Inimigo"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 705962885526354,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Inimigo",
+									"sid": 435580947304833,
+									"parameters": {
+										"instance-variable": "direcao",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "simulate-control",
+									"objectClass": "Inimigo",
+									"sid": 333641203468860,
+									"behaviorType": "Platform",
+									"parameters": {
+										"control": "left"
+									}
+								},
+								{
+									"id": "set-mirrored",
+									"objectClass": "Inimigo",
+									"sid": 318268068030916,
+									"parameters": {
+										"state": "not-mirrored"
+									}
+								}
+							],
+							"sid": 453981932323800
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 863617297180718
+								}
+							],
+							"actions": [
+								{
+									"id": "simulate-control",
+									"objectClass": "Inimigo",
+									"sid": 561606943105877,
+									"behaviorType": "Platform",
+									"parameters": {
+										"control": "right"
+									}
+								},
+								{
+									"id": "set-mirrored",
+									"objectClass": "Inimigo",
+									"sid": 141975340309697,
+									"parameters": {
+										"state": "mirrored"
+									}
+								},
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": []
+								}
+							],
+							"sid": 587599965782899
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-by-wall",
+									"objectClass": "Inimigo",
+									"sid": 112196429495459,
+									"behaviorType": "Platform",
+									"parameters": {
+										"side": "left"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Inimigo",
+									"sid": 872880481771877,
+									"parameters": {
+										"instance-variable": "direcao",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 377836911202986
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-by-wall",
+									"objectClass": "Inimigo",
+									"sid": 298903508248473,
+									"behaviorType": "Platform",
+									"parameters": {
+										"side": "right"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Inimigo",
+									"sid": 522734346544071,
+									"parameters": {
+										"instance-variable": "direcao",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 480007031358844
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "JogadorSensor",
+							"sid": 957182054577285,
+							"parameters": {
+								"object": "Inimigo"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 566654273631110,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-y",
+									"objectClass": "JogadorSensor",
+									"sid": 148057494503306,
+									"parameters": {
+										"comparison": 2,
+										"y-co-ordinate": "Inimigo.Y - 10"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "Inimigo",
+									"sid": 316239929991909,
+									"behaviorType": "Platform",
+									"parameters": {
+										"state": "disabled"
+									}
+								},
+								{
+									"id": "set-vector-y",
+									"objectClass": "JogadorSensor",
+									"sid": 494926549671911,
+									"behaviorType": "Platform",
+									"parameters": {
+										"vector-y": "-600"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "Inimigo",
+									"sid": 755524218709226,
+									"parameters": {
+										"animation": "\"HIT\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 277722335314534,
+									"parameters": {
+										"seconds": "0.5",
+										"use-timescale": true
+									}
+								},
+								{
+									"id": "destroy",
+									"objectClass": "Inimigo",
+									"sid": 486669661360951
+								}
+							],
+							"sid": 902205656841046
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 564342609091163
+								}
+							],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "JogadorSensor",
+									"sid": 923247896110609,
+									"behaviorType": "Platform",
+									"parameters": {
+										"state": "disabled"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "Jogador",
+									"sid": 537439425602372,
+									"parameters": {
+										"animation": "\"HIT\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 670060470018048,
+									"parameters": {
+										"seconds": "0.5",
+										"use-timescale": true
+									}
+								},
+								{
+									"id": "restart-layout",
+									"objectClass": "System",
+									"sid": 925306795065329
+								}
+							],
+							"sid": 180601206376927
+						}
+					]
+				}
+			],
+			"sid": 483682347804690
+		}
+	],
 	"sid": 774979959596339
 }
